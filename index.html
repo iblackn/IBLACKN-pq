@@ -11,47 +11,118 @@ body {
   text-align: center;
   background: #111;
   color: white;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 30px;
 }
 
 .tela {
   background: #ccc;
   color: black;
-  padding: 15px;
-  margin: 20px auto;
-  width: 200px;
+  padding: 20px;
+  margin: 30px auto;
+  width: 80%;
+  max-width: 300px;
   border-radius: 10px;
   font-weight: bold;
+  font-size: 24px;
+}
+
+.cinema-layout {
+  margin: 40px auto;
+  padding: 20px;
+  background: #222;
+  border-radius: 10px;
 }
 
 .area {
-  margin: 20px;
+  margin: 30px;
+}
+
+.area h3 {
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.assentos-grupo {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .assento {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 60px;
   height: 60px;
-  margin: 10px;
-  line-height: 60px;
   border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
   transition: all 0.3s ease;
+  border: 2px solid transparent;
 }
 
-.livre { background: gray; }
-.livre:hover { background: #999; }
-.selecionado { background: green; }
-.ocupado { background: red; cursor: not-allowed; }
+.livre { 
+  background: gray; 
+}
+
+.livre:hover { 
+  background: #999; 
+  transform: scale(1.05);
+}
+
+.selecionado { 
+  background: green;
+  border: 2px solid #fff;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.ocupado { 
+  background: red; 
+  cursor: not-allowed; 
+}
+
+.legenda {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 30px 0;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+
+.legenda-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legenda-box {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.btn-container {
+  margin: 30px 0;
+}
 
 button {
   background: #007bff;
   color: white;
-  padding: 12px 30px;
+  padding: 15px 40px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   transition: background 0.3s;
 }
@@ -60,50 +131,93 @@ button:hover {
   background: #0056b3;
 }
 
+.selecionado-display {
+  margin-top: 20px;
+  padding: 15px;
+  background: #333;
+  border-radius: 5px;
+  min-height: 25px;
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>🎬 Escolha seu Assento</h1>
+<div class="container">
+  <h1>🎬 Cinema VIP - Escolha seu Assento</h1>
 
-<div class="tela">📺 TELA</div>
+  <!-- TELA NA FRENTE -->
+  <div class="tela">📺 TELA</div>
 
-<!-- COXÃO (frente) -->
-<div class="area">
-  <h3>Coxão (2 lugares)</h3>
-  <div id="C1" class="assento livre" onclick="selecionar('C1')">C1</div>
-  <div id="C2" class="assento livre" onclick="selecionar('C2')">C2</div>
+  <div class="cinema-layout">
+    <!-- COXÃO (frente) -->
+    <div class="area">
+      <h3>Coxão - Frente (2 lugares)</h3>
+      <div class="assentos-grupo">
+        <div id="C1" class="assento livre" onclick="selecionar('C1')">C1</div>
+        <div id="C2" class="assento livre" onclick="selecionar('C2')">C2</div>
+      </div>
+    </div>
+
+    <!-- SOFÁ -->
+    <div class="area">
+      <h3>Sofá - Meio (3 lugares)</h3>
+      <div class="assentos-grupo">
+        <div id="S1" class="assento livre" onclick="selecionar('S1')">S1</div>
+        <div id="S2" class="assento livre" onclick="selecionar('S2')">S2</div>
+        <div id="S3" class="assento livre" onclick="selecionar('S3')">S3</div>
+      </div>
+    </div>
+
+    <!-- CADEIRA -->
+    <div class="area">
+      <h3>Cadeira - Fundo (1 lugar)</h3>
+      <div class="assentos-grupo">
+        <div id="A1" class="assento livre" onclick="selecionar('A1')">A1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGENDA -->
+  <div class="legenda">
+    <div class="legenda-item">
+      <div class="legenda-box" style="background: gray;"></div>
+      <span>Disponível</span>
+    </div>
+    <div class="legenda-item">
+      <div class="legenda-box" style="background: green;"></div>
+      <span>Selecionado</span>
+    </div>
+    <div class="legenda-item">
+      <div class="legenda-box" style="background: red;"></div>
+      <span>Ocupado</span>
+    </div>
+  </div>
+
+  <div class="selecionado-display" id="display">
+    Nenhum assento selecionado
+  </div>
+
+  <div class="btn-container">
+    <button onclick="enviar()">📲 Enviar Assento via WhatsApp</button>
+  </div>
 </div>
-
-<!-- SOFÁ -->
-<div class="area">
-  <h3>Sofá (3 lugares)</h3>
-  <div id="S1" class="assento livre" onclick="selecionar('S1')">S1</div>
-  <div id="S2" class="assento livre" onclick="selecionar('S2')">S2</div>
-  <div id="S3" class="assento livre" onclick="selecionar('S3')">S3</div>
-</div>
-
-<!-- CADEIRA -->
-<div class="area">
-  <h3>Cadeira (1 lugar)</h3>
-  <div id="A1" class="assento livre" onclick="selecionar('A1')">A1</div>
-</div>
-
-<br>
-<button onclick="enviar()">📲 Enviar Assento</button>
 
 <script>
 
-// lugares já ocupados (simulação)
+// Lugares já ocupados (simulação)
 let ocupados = ["S2", "C1"]; 
 
 let escolhido = null;
 
-// marca ocupados
+// Marca ocupados
 ocupados.forEach(id => {
-  document.getElementById(id).classList.add("ocupado");
-  document.getElementById(id).classList.remove("livre");
+  let elemento = document.getElementById(id);
+  if(elemento) {
+    elemento.classList.add("ocupado");
+    elemento.classList.remove("livre");
+  }
 });
 
 function selecionar(id) {
@@ -114,7 +228,7 @@ function selecionar(id) {
     return;
   }
 
-  // limpar seleção anterior
+  // Limpar seleção anterior
   if(escolhido){
     let anterior = document.getElementById(escolhido);
     anterior.classList.remove("selecionado");
@@ -124,6 +238,9 @@ function selecionar(id) {
   escolhido = id;
   lugar.classList.remove("livre");
   lugar.classList.add("selecionado");
+  
+  // Atualiza display
+  document.getElementById("display").textContent = "Assento selecionado: " + escolhido;
 }
 
 function enviar(){
@@ -132,7 +249,7 @@ function enviar(){
     return;
   }
 
-  let mensagem = "Assento escolhido: " + escolhido;
+  let mensagem = "🎬 Assento escolhido: " + escolhido + "\n\nCinema VIP";
 
   let numero = "5583981735110";
 
