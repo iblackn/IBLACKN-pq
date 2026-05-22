@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escolher Assento - Cinema VIP</title>
+
+<style>
+body {
+  font-family: Arial;
+  text-align: center;
+  background: #111;
+  color: white;
+}
+
+.tela {
+  background: #ccc;
+  color: black;
+  padding: 15px;
+  margin: 20px auto;
+  width: 200px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.area {
+  margin: 20px;
+}
+
+.assento {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  margin: 10px;
+  line-height: 60px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.livre { background: gray; }
+.livre:hover { background: #999; }
+.selecionado { background: green; }
+.ocupado { background: red; cursor: not-allowed; }
+
+button {
+  background: #007bff;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🎬 Escolha seu Assento</h1>
+
+<div class="tela">📺 TELA</div>
+
+<!-- COXÃO (frente) -->
+<div class="area">
+  <h3>Coxão (2 lugares)</h3>
+  <div id="C1" class="assento livre" onclick="selecionar('C1')">C1</div>
+  <div id="C2" class="assento livre" onclick="selecionar('C2')">C2</div>
+</div>
+
+<!-- SOFÁ -->
+<div class="area">
+  <h3>Sofá (3 lugares)</h3>
+  <div id="S1" class="assento livre" onclick="selecionar('S1')">S1</div>
+  <div id="S2" class="assento livre" onclick="selecionar('S2')">S2</div>
+  <div id="S3" class="assento livre" onclick="selecionar('S3')">S3</div>
+</div>
+
+<!-- CADEIRA -->
+<div class="area">
+  <h3>Cadeira (1 lugar)</h3>
+  <div id="A1" class="assento livre" onclick="selecionar('A1')">A1</div>
+</div>
+
+<br>
+<button onclick="enviar()">📲 Enviar Assento</button>
+
+<script>
+
+// lugares já ocupados (simulação)
+let ocupados = ["S2", "C1"]; 
+
+let escolhido = null;
+
+// marca ocupados
+ocupados.forEach(id => {
+  document.getElementById(id).classList.add("ocupado");
+  document.getElementById(id).classList.remove("livre");
+});
+
+function selecionar(id) {
+  let lugar = document.getElementById(id);
+
+  if(lugar.classList.contains("ocupado")){
+    alert("Esse assento já está ocupado!");
+    return;
+  }
+
+  // limpar seleção anterior
+  if(escolhido){
+    let anterior = document.getElementById(escolhido);
+    anterior.classList.remove("selecionado");
+    anterior.classList.add("livre");
+  }
+
+  escolhido = id;
+  lugar.classList.remove("livre");
+  lugar.classList.add("selecionado");
+}
+
+function enviar(){
+  if(!escolhido){
+    alert("Escolha um assento!");
+    return;
+  }
+
+  let mensagem = "Assento escolhido: " + escolhido;
+
+  let numero = "5583981735110";
+
+  let url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem);
+
+  window.open(url, "_blank");
+}
+
+</script>
+
+</body>
+</html>
