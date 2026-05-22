@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Festa Brasil vs Marrocos</title>
+
+<style>
+body {
+  font-family: Arial;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: gold;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-top: 20px;
+  font-size: 32px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.bandeiras {
+  font-size: 60px;
+  margin: 20px 0;
+}
+
+.card {
+  background: #111;
+  border: 3px solid gold;
+  border-radius: 15px;
+  padding: 30px;
+  margin: 30px auto;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.card h3 {
+  font-size: 24px;
+  margin-top: 0;
+  color: gold;
+}
+
+.preco {
+  font-size: 28px;
+  font-weight: bold;
+  color: gold;
+  margin: 15px 0;
+}
+
+.info {
+  font-size: 14px;
+  color: #ccc;
+  margin: 15px 0;
+}
+
+button {
+  background: gold;
+  color: black;
+  border: none;
+  padding: 15px 40px;
+  margin-top: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.instrucoes {
+  background: #1a1a1a;
+  border-left: 4px solid gold;
+  padding: 15px;
+  margin: 30px auto;
+  width: 90%;
+  max-width: 450px;
+  text-align: left;
+  border-radius: 5px;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.instrucoes h4 {
+  color: gold;
+  margin-top: 0;
+}
+
+.pix-info {
+  background: #0d0d0d;
+  border: 2px solid #555;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 15px 0;
+  font-family: monospace;
+  word-break: break-all;
+  color: #fff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <h1>🎉 FESTA</h1>
+  <div class="bandeiras">
+    <span>🇧🇷</span>
+    <span style="margin: 0 20px;">vs</span>
+    <span>🇲🇦</span>
+  </div>
+  <h2>Brasil vs Marrocos</h2>
+
+  <div class="card">
+    <h3>🎟️ Ingresso</h3>
+    <p class="preco">R$ 20,00</p>
+    <p class="info">Acesso à festa + bebidas</p>
+    <button onclick="pagar()">💰 Comprar Ingresso</button>
+  </div>
+
+  <div class="instrucoes">
+    <h4>📝 Como Funciona:</h4>
+    <ol style="text-align: left; margin: 10px 0;">
+      <li>Clique no botão "Comprar Ingresso"</li>
+      <li>Você será redirecionado para o WhatsApp</li>
+      <li>Envie a mensagem para confirmar</li>
+      <li>Você receberá a chave Pix para pagamento</li>
+      <li>Após pagar, envie o comprovante</li>
+    </ol>
+  </div>
+
+  <div style="color: #999; font-size: 12px; margin-top: 30px;">
+    <p>💳 Pagamento seguro via Pix</p>
+    <p>📱 Dúvidas? Entre em contato conosco!</p>
+  </div>
+</div>
+
+<script>
+function pagar() {
+  let chavePix = "5561992441034";
+  let valor = "20.00";
+  let mensagem = "Olá! Gostaria de comprar 1 ingresso para a Festa Brasil vs Marrocos 🎉\n\n💰 Valor: R$ 20,00\n📲 Chave Pix: " + chavePix + "\n\nAguardo o comprovante após o pagamento!";
+
+  let url = "https://wa.me/5583981735110?text=" + encodeURIComponent(mensagem);
+
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
